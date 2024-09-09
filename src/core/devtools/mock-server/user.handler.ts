@@ -1,11 +1,15 @@
 import { http, HttpResponse } from 'msw';
+import { UserMother } from '../../../app/pages/components/test/user.object';
 
 export const userHandler = [
+  http.get('https://example.com/user/:id', (req) => {
+    return HttpResponse.json(
+      UserMother.dto({
+        id: req.params['id'] as string,
+      })
+    );
+  }),
   http.get('https://example.com/user', () => {
-    return HttpResponse.json({
-      id: 'c7b3d8e0-5e0b-4b0f-8b3a-3b9f4b3d3b3d',
-      firstName: 'John',
-      lastName: 'Maverick',
-    });
+    return HttpResponse.json(UserMother.dto());
   }),
 ];
