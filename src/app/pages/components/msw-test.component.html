@@ -3,5 +3,13 @@
   <p class="subtitle">
     Haz clic en el siguiente botón para hacer una llamada al msw
   </p>
-  <button class="cta">Pulsa aqui</button>
+  <button class="cta" (click)="getUser()">Pulsa aqui</button>
+  @if (user() !== null) {
+  <div class="user">
+    <p class="name">
+      Nombre completo: {{ user()!.firstName }} {{ user()!.lastName }}
+    </p>
+    <p class="id">ID: {{ user()!.id }}</p>
+  </div>
+  }
 </section>
